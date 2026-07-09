@@ -11,13 +11,14 @@
         <link rel="stylesheet" href="css/L.Control.Locate.min.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/leaflet-search.css">
         <link rel="stylesheet" href="css/leaflet.photon.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
-        #map {
-            width: 1171px;
-            height: 588px;
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
         }
         </style>
         <title></title>
@@ -38,14 +39,13 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet.photon.js"></script>
         <script src="js/leaflet-measure.js"></script>
-        <script src="js/leaflet-search.js"></script>
         <script src="data/FreguesiadeCandosoSoMartinho_1.js"></script>
-        <script src="data/espacos_verdes_2.js"></script>
-        <script src="data/Arruamentos_3.js"></script>
+        <script src="data/EspaosVerdes_2.js"></script>
+        <script src="data/ArruamentosdaJunta_3.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[41.41189569413521,-8.362042625283559],[41.43831286431676,-8.292258979434862]]);
+        }).fitBounds([[41.42688402191112,-8.33718362036563],[41.42769677116815,-8.331802926367896]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -153,39 +153,6 @@
         map.addLayer(layer_GoogleSatellite_0);
         function pop_FreguesiadeCandosoSoMartinho_1(feature, layer) {
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['dtmnfr'] !== null ? autolinker.link(String(feature.properties['dtmnfr']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['freguesia'] !== null ? autolinker.link(String(feature.properties['freguesia']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['municipio'] !== null ? autolinker.link(String(feature.properties['municipio']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['distrito_i'] !== null ? autolinker.link(String(feature.properties['distrito_i']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['nuts3'] !== null ? autolinker.link(String(feature.properties['nuts3']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['nuts2'] !== null ? autolinker.link(String(feature.properties['nuts2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['nuts1'] !== null ? autolinker.link(String(feature.properties['nuts1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['area_ha'] !== null ? autolinker.link(String(feature.properties['area_ha']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['perimetro_'] !== null ? autolinker.link(String(feature.properties['perimetro_']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['designacao'] !== null ? autolinker.link(String(feature.properties['designacao']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
 			layer.on('popupopen', function(e) {
@@ -198,13 +165,13 @@
             return {
                 pane: 'pane_FreguesiadeCandosoSoMartinho_1',
                 opacity: 1,
-                color: 'rgba(226,226,226,1.0)',
+                color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
-                weight: 3.0,
+                weight: 8.0,
                 fillOpacity: 0,
-                interactive: true,
+                interactive: false,
             }
         }
         map.createPane('pane_FreguesiadeCandosoSoMartinho_1');
@@ -212,7 +179,7 @@
         map.getPane('pane_FreguesiadeCandosoSoMartinho_1').style['mix-blend-mode'] = 'normal';
         var layer_FreguesiadeCandosoSoMartinho_1 = new L.geoJson(json_FreguesiadeCandosoSoMartinho_1, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_FreguesiadeCandosoSoMartinho_1',
             layerName: 'layer_FreguesiadeCandosoSoMartinho_1',
             pane: 'pane_FreguesiadeCandosoSoMartinho_1',
@@ -221,20 +188,22 @@
         });
         bounds_group.addLayer(layer_FreguesiadeCandosoSoMartinho_1);
         map.addLayer(layer_FreguesiadeCandosoSoMartinho_1);
-        function pop_espacos_verdes_2(feature, layer) {
+        function pop_EspaosVerdes_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(String(feature.properties['id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">data_limpe</th>\
+                        <td class="visible-with-data" id="data_limpe">' + (feature.properties['data_limpe'] !== null ? autolinker.link(String(feature.properties['data_limpe']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">toponimia</th>\
-                        <td>' + (feature.properties['toponimia'] !== null ? autolinker.link(String(feature.properties['toponimia']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2"><strong>Nome</strong><br />' + (feature.properties['Nome'] !== null ? autolinker.link(String(feature.properties['Nome']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['area'] !== null ? autolinker.link(String(feature.properties['area']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Observacao</th>\
+                        <td class="visible-with-data" id="Observacao">' + (feature.properties['Observacao'] !== null ? autolinker.link(String(feature.properties['Observacao']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['obs'] !== null ? autolinker.link(String(feature.properties['obs']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">area_m2</th>\
+                        <td class="visible-with-data" id="area_m2">' + (feature.properties['area_m2'] !== null ? autolinker.link(String(feature.properties['area_m2']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -244,9 +213,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_espacos_verdes_2_0() {
+        function style_EspaosVerdes_2_0() {
             return {
-                pane: 'pane_espacos_verdes_2',
+                pane: 'pane_EspaosVerdes_2',
                 opacity: 1,
                 color: 'rgba(0,255,35,1.0)',
                 dashArray: '',
@@ -259,31 +228,36 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_espacos_verdes_2');
-        map.getPane('pane_espacos_verdes_2').style.zIndex = 402;
-        map.getPane('pane_espacos_verdes_2').style['mix-blend-mode'] = 'normal';
-        var layer_espacos_verdes_2 = new L.geoJson(json_espacos_verdes_2, {
+        map.createPane('pane_EspaosVerdes_2');
+        map.getPane('pane_EspaosVerdes_2').style.zIndex = 402;
+        map.getPane('pane_EspaosVerdes_2').style['mix-blend-mode'] = 'normal';
+        var layer_EspaosVerdes_2 = new L.geoJson(json_EspaosVerdes_2, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_espacos_verdes_2',
-            layerName: 'layer_espacos_verdes_2',
-            pane: 'pane_espacos_verdes_2',
-            onEachFeature: pop_espacos_verdes_2,
-            style: style_espacos_verdes_2_0,
+            dataVar: 'json_EspaosVerdes_2',
+            layerName: 'layer_EspaosVerdes_2',
+            pane: 'pane_EspaosVerdes_2',
+            onEachFeature: pop_EspaosVerdes_2,
+            style: style_EspaosVerdes_2_0,
         });
-        bounds_group.addLayer(layer_espacos_verdes_2);
-        map.addLayer(layer_espacos_verdes_2);
-        function pop_Arruamentos_3(feature, layer) {
+        bounds_group.addLayer(layer_EspaosVerdes_2);
+        map.addLayer(layer_EspaosVerdes_2);
+        function pop_ArruamentosdaJunta_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['nome'] !== null ? autolinker.link(String(feature.properties['nome']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['dicofre'] !== null ? autolinker.link(String(feature.properties['dicofre']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2"><strong>nome</strong><br />' + (feature.properties['nome'] !== null ? autolinker.link(String(feature.properties['nome']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Limpeza</th>\
-                        <td>' + (feature.properties['Limpeza'] !== null ? autolinker.link(String(feature.properties['Limpeza']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Limpeza">' + (feature.properties['Limpeza'] !== null ? autolinker.link(String(feature.properties['Limpeza']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">data_limpe</th>\
+                        <td class="visible-with-data" id="data_limpe">' + (feature.properties['data_limpe'] !== null ? autolinker.link(String(feature.properties['data_limpe']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">observacao</th>\
+                        <td class="visible-with-data" id="observacao">' + (feature.properties['observacao'] !== null ? autolinker.link(String(feature.properties['observacao']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -293,13 +267,13 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Arruamentos_3_0(feature) {
+        function style_ArruamentosdaJunta_3_0(feature) {
             switch(String(feature.properties['Limpeza'])) {
-                case 'Parcial':
+                case 'Gestão Parcial':
                     return {
-                pane: 'pane_Arruamentos_3',
+                pane: 'pane_ArruamentosdaJunta_3',
                 opacity: 1,
-                color: 'rgba(255,237,0,1.0)',
+                color: 'rgba(255,142,0,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -308,11 +282,24 @@
                 interactive: true,
             }
                     break;
-                case 'Total':
+                case 'Gestão Total':
                     return {
-                pane: 'pane_Arruamentos_3',
+                pane: 'pane_ArruamentosdaJunta_3',
                 opacity: 1,
-                color: 'rgba(230,44,0,1.0)',
+                color: 'rgba(0,255,86,0.6980392156862745)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 6.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Gestão Municipal':
+                    return {
+                pane: 'pane_ArruamentosdaJunta_3',
+                opacity: 1,
+                color: 'rgba(99,99,99,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -323,20 +310,20 @@
                     break;
             }
         }
-        map.createPane('pane_Arruamentos_3');
-        map.getPane('pane_Arruamentos_3').style.zIndex = 403;
-        map.getPane('pane_Arruamentos_3').style['mix-blend-mode'] = 'normal';
-        var layer_Arruamentos_3 = new L.geoJson(json_Arruamentos_3, {
+        map.createPane('pane_ArruamentosdaJunta_3');
+        map.getPane('pane_ArruamentosdaJunta_3').style.zIndex = 403;
+        map.getPane('pane_ArruamentosdaJunta_3').style['mix-blend-mode'] = 'normal';
+        var layer_ArruamentosdaJunta_3 = new L.geoJson(json_ArruamentosdaJunta_3, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Arruamentos_3',
-            layerName: 'layer_Arruamentos_3',
-            pane: 'pane_Arruamentos_3',
-            onEachFeature: pop_Arruamentos_3,
-            style: style_Arruamentos_3_0,
+            dataVar: 'json_ArruamentosdaJunta_3',
+            layerName: 'layer_ArruamentosdaJunta_3',
+            pane: 'pane_ArruamentosdaJunta_3',
+            onEachFeature: pop_ArruamentosdaJunta_3,
+            style: style_ArruamentosdaJunta_3_0,
         });
-        bounds_group.addLayer(layer_Arruamentos_3);
-        map.addLayer(layer_Arruamentos_3);
+        bounds_group.addLayer(layer_ArruamentosdaJunta_3);
+        map.addLayer(layer_ArruamentosdaJunta_3);
         const url = {"Nominatim OSM": "https://nominatim.openstreetmap.org/search?format=geojson&addressdetails=1&",
         "France BAN": "https://api-adresse.data.gouv.fr/search/?"}
         var photonControl = L.control.photon({
@@ -391,10 +378,10 @@
             }
         });
         var overlaysTree = [
-        {label: '<b>Espaços Verdes</b>',  selectAllCheckbox: true, children: [
-            {label: 'Arruamentos<br /><table><tr><td style="text-align: center;"><img src="legend/Arruamentos_3_Parcial0.png" /></td><td>Parcial</td></tr><tr><td style="text-align: center;"><img src="legend/Arruamentos_3_Total1.png" /></td><td>Total</td></tr></table>', layer: layer_Arruamentos_3},
-            {label: '<img src="legend/espacos_verdes_2.png" /> espacos_verdes', layer: layer_espacos_verdes_2},]},
-        {label: '<b>Base</b>',  selectAllCheckbox: true, children: [
+        {label: '<b>Limpeza urbana</b>',  selectAllCheckbox: true, children: [
+            {label: 'Arruamentos da Junta<br /><table><tr><td style="text-align: center;"><img src="legend/ArruamentosdaJunta_3_GestãoParcial0.png" /></td><td>Gestão Parcial</td></tr><tr><td style="text-align: center;"><img src="legend/ArruamentosdaJunta_3_GestãoTotal1.png" /></td><td>Gestão Total</td></tr><tr><td style="text-align: center;"><img src="legend/ArruamentosdaJunta_3_GestãoMunicipal2.png" /></td><td>Gestão Municipal</td></tr></table>', layer: layer_ArruamentosdaJunta_3},
+            {label: '<img src="legend/EspaosVerdes_2.png" /> Espaços Verdes', layer: layer_EspaosVerdes_2},]},
+        {label: '<b>Cartografia base</b>',  selectAllCheckbox: true, children: [
             {label: '<img src="legend/FreguesiadeCandosoSoMartinho_1.png" /> Freguesia de Candoso (São Martinho)', layer: layer_FreguesiadeCandosoSoMartinho_1},
             {label: "Google Satellite", layer: layer_GoogleSatellite_0, radioGroup: 'bm' },]},]
         var lay = L.control.layers.tree(null, overlaysTree,{
@@ -404,70 +391,93 @@
             //openedSymbol: '&#8863; &#x1f5c1;',
             //collapseAll: 'Collapse all',
             //expandAll: 'Expand all',
-            collapsed: false, 
+            collapsed: true,
         });
         lay.addTo(map);
-		document.addEventListener("DOMContentLoaded", function() {
-            // set new Layers List height which considers toggle icon
-            function newLayersListHeight() {
-                var layerScrollbarElement = document.querySelector('.leaflet-control-layers-scrollbar');
-                if (layerScrollbarElement) {
-                    var layersListElement = document.querySelector('.leaflet-control-layers-list');
-                    var originalHeight = layersListElement.style.height 
-                        || window.getComputedStyle(layersListElement).height;
-                    var newHeight = parseFloat(originalHeight) - 50;
-                    layersListElement.style.height = newHeight + 'px';
+        map.on("zoomend", function(){
+
+                if (map.hasLayer(layer_FreguesiadeCandosoSoMartinho_1)) {
+                    if (map.getZoom() <= 13 && map.getZoom() >= 16) {
+                        layer_FreguesiadeCandosoSoMartinho_1.eachLayer(function (layer) {
+                            layer.openTooltip();
+                        });
+                    } else {
+                        layer_FreguesiadeCandosoSoMartinho_1.eachLayer(function (layer) {
+                            layer.closeTooltip();
+                        });
+                    }
                 }
-            }
-            var isLayersListExpanded = true;
-            var controlLayersElement = document.querySelector('.leaflet-control-layers');
-            var toggleLayerControl = document.querySelector('.leaflet-control-layers-toggle');
-            // toggle Collapsed/Expanded and apply new Layers List height
-            toggleLayerControl.addEventListener('click', function() {
-                if (isLayersListExpanded) {
-                    controlLayersElement.classList.remove('leaflet-control-layers-expanded');
-                } else {
-                    controlLayersElement.classList.add('leaflet-control-layers-expanded');
+                if (map.hasLayer(layer_ArruamentosdaJunta_3)) {
+                    if (map.getZoom() <= 15 && map.getZoom() >= 19) {
+                        layer_ArruamentosdaJunta_3.eachLayer(function (layer) {
+                            layer.openTooltip();
+                        });
+                    } else {
+                        layer_ArruamentosdaJunta_3.eachLayer(function (layer) {
+                            layer.closeTooltip();
+                        });
+                    }
                 }
-                isLayersListExpanded = !isLayersListExpanded;
-                newLayersListHeight()
-            });	
-			// apply new Layers List height if toggle layerstree
-			if (controlLayersElement) {
-				controlLayersElement.addEventListener('click', function(event) {
-					var toggleLayerHeaderPointer = event.target.closest('.leaflet-layerstree-header-pointer span');
-					if (toggleLayerHeaderPointer) {
-						newLayersListHeight();
-					}
-				});
-			}
-            // Collapsed/Expanded at Start to apply new height
-            setTimeout(function() {
-                toggleLayerControl.click();
-            }, 10);
-            setTimeout(function() {
-                toggleLayerControl.click();
-            }, 10);
-            // Collapsed touch/small screen
-            var isSmallScreen = window.innerWidth < 650;
-            if (isSmallScreen) {
-                setTimeout(function() {
-                    controlLayersElement.classList.remove('leaflet-control-layers-expanded');
-                    isLayersListExpanded = !isLayersListExpanded;
-                }, 500);
-            }  
-        });       
+        });
         setBounds();
-        map.addControl(new L.Control.Search({
-            layer: layer_Arruamentos_3,
-            initial: false,
-            hideMarkerOnCollapse: true,
-            propertyName: 'nome'}));
-        if (typeof url === 'undefined') {
-            document.getElementsByClassName('search-button')[0].className += ' fa fa-binoculars';
-        } else {
-            document.getElementsByClassName('search-button')[1].className += ' fa fa-binoculars';
-        }
-        </script>
+        var i = 0;
+        layer_FreguesiadeCandosoSoMartinho_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['freguesia'] !== null?String('<div style="color: #323232; font-size: 14pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['freguesia']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_FreguesiadeCandosoSoMartinho_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_ArruamentosdaJunta_3.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['nome'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['nome']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_ArruamentosdaJunta_3'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+                if (map.hasLayer(layer_FreguesiadeCandosoSoMartinho_1)) {
+                    if (map.getZoom() <= 13 && map.getZoom() >= 16) {
+                        layer_FreguesiadeCandosoSoMartinho_1.eachLayer(function (layer) {
+                            layer.openTooltip();
+                        });
+                    } else {
+                        layer_FreguesiadeCandosoSoMartinho_1.eachLayer(function (layer) {
+                            layer.closeTooltip();
+                        });
+                    }
+                }
+                if (map.hasLayer(layer_ArruamentosdaJunta_3)) {
+                    if (map.getZoom() <= 15 && map.getZoom() >= 19) {
+                        layer_ArruamentosdaJunta_3.eachLayer(function (layer) {
+                            layer.openTooltip();
+                        });
+                    } else {
+                        layer_ArruamentosdaJunta_3.eachLayer(function (layer) {
+                            layer.closeTooltip();
+                        });
+                    }
+                }
+        resetLabels([layer_FreguesiadeCandosoSoMartinho_1,layer_ArruamentosdaJunta_3]);
+        map.on("zoomend", function(){
+            resetLabels([layer_FreguesiadeCandosoSoMartinho_1,layer_ArruamentosdaJunta_3]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_FreguesiadeCandosoSoMartinho_1,layer_ArruamentosdaJunta_3]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_FreguesiadeCandosoSoMartinho_1,layer_ArruamentosdaJunta_3]);
+        });
+        </script>        
     </body>
 </html>
