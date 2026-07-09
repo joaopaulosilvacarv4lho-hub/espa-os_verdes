@@ -255,3 +255,24 @@
                 2px 1px 0 #fafafa,
                 2px 2px 0 #fafafa;
         }
+/* ---------- Otimização para telemóveis ---------- */
+
+.leaflet-control-layers {
+    font-size: 16px !important;
+}
+
+.leaflet-popup-content {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+}
+
+.leaflet-touch .leaflet-bar a {
+    width: 40px !important;
+    height: 40px !important;
+    line-height: 40px !important;
+    font-size: 22px !important;
+}
+
+.leaflet-control-search .search-input {
+    font-size: 16px !important;
+}
